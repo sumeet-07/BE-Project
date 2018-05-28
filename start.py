@@ -8,18 +8,26 @@ def init():
 	os.system('mkdir sassbank_mysqldata')
 	os.system('docker swarm init')	
 
-def deploy(filename,stackname):
+def deploy_stack(filename,stackname):
 	os.system("docker stack deploy -c "+filename+" "+stackname)
+
+def remove_stacks():
+	os.system('docker stack rm sassapp')
+	os.system('docker stack rm sassbank')
+	time.sleep(5)	
+	
 
 def job1():
 	print "Working hours"
-	deploy("bank-config1.yml","sassbank")
-	deploy("app-config1.yml","sassapp")
+	remove_stacks()
+	deploy_stack("bank-config1.yml","sassbank")
+	deploy_stack("app-config1.yml","sassapp")
 
 def job2():
 	print "Non-working hours"
-	deploy("bank-config2.yml","sassbank")
-	deploy("app-config2.yml","sassapp")
+	remove_stacks()
+	deploy_stack("bank-config2.yml","sassbank")
+	deploy_stack("app-config2.yml","sassapp")
 
 
 if __name__ == "__main__":
@@ -28,14 +36,12 @@ if __name__ == "__main__":
 
 	if t.tm_hour>10 and t.tm_hour<17:
 		print "Working hours"
-		deploy("bank-config1.yml","sassbank")
-		deploy("app-config1.yml","sassapp")
-	else
+		deploy_stack("bank-config1.yml","sassbank")
+		deploy_stack("app-config1.yml","sassapp")
+	else:
 		print "Non-working hours"
-		deploy("bank-config2.yml","sassbank")
-		deploy("app-config2.yml","sassapp")
-
-
+		deploy_stack("bank-config2.yml","sassbank")
+		deploy_stack("app-config2.yml","sassapp")
 
 	schedule.every().day.at("10:00").do(job1)
 	schedule.every().day.at("17:00").do(job2)
