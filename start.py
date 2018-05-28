@@ -14,6 +14,15 @@ def init():
 	os.system('docker swarm init')	
 	print "##### Creating Docker Swarm Finished #####"
 
+def cleanup():
+	print ""
+	print "##### Cleaning up memory #####"
+	os.system('docker volume prune')
+	os.system('docker network prune')
+	os.system('docker container prune')
+	os.system('docker image prune')
+	print "##### Cleaning up memory finished #####"
+
 def deploy_stack(filename,stackname):
 	print ""
 	print "##### Deploying "+stackname+" stack #####"
@@ -50,8 +59,9 @@ def config2():
 
 if __name__ == "__main__":
 	init()
-	t= time.localtime()
+	cleanup()
 
+	t= time.localtime()
 	if t.tm_hour>10 and t.tm_hour<17:
 		config1()
 	else:
