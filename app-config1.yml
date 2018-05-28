@@ -16,7 +16,7 @@ services:
   mysqlhost:
     image: sumeetsp07/sassappmysql:v1
     volumes:
-      - "/opt/stack/sassapp_mysqldata:/var/lib/mysql"
+      - "/opt/sass/sassapp_mysqldata:/var/lib/mysql"
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -25,7 +25,7 @@ services:
   mongohost:
     image: mongo
     volumes:
-      - "/opt/stack/sassapp_mongodbdata:/data/db"
+      - "/opt/sass/sassapp_mongodbdata:/data/db"
     deploy:
       placement:
         constraints: [node.role == manager]

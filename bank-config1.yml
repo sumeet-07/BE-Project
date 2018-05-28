@@ -23,11 +23,10 @@ services:
         constraints: [node.role == manager]
     networks:
       - webnet
-
   mysqlhost:
     image: sumeetsp07/sassbankmysql:v1
     volumes:
-      - "/opt/stack/sassbank_mysqldata:/var/lib/mysql"
+      - "/opt/sass/sassbank_mysqldata:/var/lib/mysql"
     deploy:
       placement:
         constraints: [node.role == manager]

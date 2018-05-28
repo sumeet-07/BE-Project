@@ -4,9 +4,10 @@ import schedule
 
 def init():
 	print "##### Creating Database Directories #####"
-	os.system('mkdir /opt/stack/sassapp_mongodbdata')
-	os.system('mkdir /opt/stack/sassapp_mysqldata')
-	os.system('mkdir /opt/stack/sassbank_mysqldata')
+	os.system('mkdir /opt/sass')
+	os.system('mkdir /opt/sass/sassapp_mongodbdata')
+	os.system('mkdir /opt/sass/sassapp_mysqldata')
+	os.system('mkdir /opt/sass/sassbank_mysqldata')
 	print "##### Creating Database Directories Finished #####"
 	print ""
 	print "##### Creating Docker Swarm #####"
