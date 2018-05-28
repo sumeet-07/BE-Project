@@ -27,7 +27,7 @@ services:
   mysqlhost:
     image: sumeetsp07/sassbankmysql:v1
     volumes:
-      - "/home/user/docker/sassapp_mysqldata:/var/lib/mysql"
+      - "/opt/stack/sassbank_mysqldata:/var/lib/mysql"
     deploy:
       placement:
         constraints: [node.role == manager]
