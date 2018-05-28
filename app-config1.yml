@@ -1,0 +1,37 @@
+version: "3"
+services:
+  web:
+    image: sumeetsp07/sassappserver:v2
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:80"
+    depends_on:
+      - mysqlhost
+      - mongohost
+    networks:
+      - webnet
+  mysqlhost:
+    image: sumeetsp07/sassappmysql:v1
+    volumes:
+      - "/home/user/docker/sassapp_mysqldata:/var/lib/mysql"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+  mongohost:
+    image: mongo
+    volumes:
+      - "/home/user/docker/sassapp_mongodbdata:/data/db"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+networks:
+  webnet:
+
+
