@@ -45,7 +45,7 @@ def config2():
 	print "##### Deploying non-working hours stack Finished #####"
 
 if __name__ == "__main__":
-
+	init()
 	t= time.localtime()
 
 	if t.tm_hour>10 and t.tm_hour<17:
