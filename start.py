@@ -25,6 +25,9 @@ def remove_stacks():
 	print "##### Removing Stacks #####"
 	os.system('docker stack rm sassapp')
 	os.system('docker stack rm sassbank')
+	time.sleep(5)	
+	os.system('docker stack rm sassapp')
+	os.system('docker stack rm sassbank')
 	time.sleep(10)	
 	print "##### Removing Stacks Finished #####"
 	
